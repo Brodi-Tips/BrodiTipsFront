@@ -1,0 +1,38 @@
+body {
+  background-color: #21222c;
+  color: #ffffff;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.42857143;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@keyframes jump {
+  10% {
+    transform: rotate(15deg) rotateY(10deg);
+  }
+  20% {
+    transform: rotate(-10deg) rotateY(-10deg);
+  }
+  30% {
+    transform: rotate(5deg) rotateY(5deg);
+  }
+  40% {
+    transform: rotate(-5deg) rotateY(-5deg);
+  }
+  50% {
+    transform: rotate(0deg) rotateY(0deg);
+  }
+  100% {
+    transform: rotate(0deg) rotateY(0deg);
+  }
+}
+
+img {
+  animation: jump 1.5s infinite;
+  animation-timing-function: jump-start;
+  width: 15vmax;
+}
