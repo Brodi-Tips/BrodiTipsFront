@@ -1,18 +1,18 @@
 {
-  "short_name": "Tipster Bot",
-  "name": "Tipster Bot",
+  "short_name": "Brodi Tipster",
+  "name": "Brodi Tipster",
   "icons": [
     {
-      "src": "/logo.png",
+      "src": "logo.png",
       "type": "image/png",
       "sizes": "850x850"
     }
   ],
-  "favicon": "/favicon.png",
-  "start_url": "/",
+  "favicon": "/logo.png",
+  "start_url": "/TipsterRedirect/",
   "background_color": "#21222C",
   "display": "standalone",
   "scope": "/",
   "theme_color": "#4BCB45",
-  "description": "Plataforma para seguir sinais de apostas validadas."
+  "description": "Seu robô de apostas! Plataforma para seguir sinais de apostas validadas."
 }
