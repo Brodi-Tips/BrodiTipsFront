@@ -5,9 +5,10 @@
     {
       "src": "/logo.png",
       "type": "image/png",
-      "sizes": "859x908"
+      "sizes": "850x850"
     }
   ],
+  "favicon": "/favicon.png",
   "start_url": "/",
   "background_color": "#21222C",
   "display": "standalone",
