@@ -1,0 +1,17 @@
+{
+  "short_name": "Tipster Bot",
+  "name": "Tipster Bot",
+  "icons": [
+    {
+      "src": "/logo.png",
+      "type": "image/png",
+      "sizes": "859x908"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#21222C",
+  "display": "standalone",
+  "scope": "/",
+  "theme_color": "#4BCB45",
+  "description": "Plataforma para seguir sinais de apostas validadas."
+}
