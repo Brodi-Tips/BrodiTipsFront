@@ -74,6 +74,18 @@ main {
     width: 100%;
     margin: 0 0 1rem;
     border-radius: 0;
+    padding-bottom: 4rem;
+  }
+}
+
+@media (min-width: 768px) {
+  body {
+    overflow: hidden;
+  }
+
+  main {
+    overflow-y: scroll;
+    height: calc(100% - 150px);
   }
 }
 
@@ -151,14 +163,22 @@ main {
   justify-content: center;
   width: 100%;
   align-items: center;
-  color: #6272a4;
+  color: #4e547c;
   font-size: 18px;
   font-weight: 200;
 }
 
 .green {
   color: rgb(75, 203, 69);
-  margin-left: 0.5rem;
+}
+
+.yellow {
+  color: f1fa8c;
+}
+
+.magenta {
+  color: #ff076ae0;
+  opacity: 0.8;
 }
 
 .card-one {
@@ -172,7 +192,7 @@ main {
 .product-img {
   border-radius: 6px;
   margin-bottom: 16px;
-  max-width: 120px;
+  max-width: 150px;
 }
 
 .product-name {
@@ -186,12 +206,11 @@ main {
   opacity: 0.7;
   font-size: 14px;
   margin: 0;
-  display: none;
 }
 
 .product-box-price {
-  margin-top: 36px;
-  margin-bottom: 36px;
+  margin-top: 8px;
+  margin-bottom: 0;
 }
 
 .product-from {
@@ -252,6 +271,10 @@ main {
   line-height: 1.15;
   margin: 0;
   max-width: 400px;
+  gap: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .product-button:hover {
@@ -260,11 +283,31 @@ main {
 
 .product-button:focus {
   box-shadow: none;
-  background-color: rgb(75, 203, 69);
-  border-color: rgb(75, 203, 69);
+  /* border-color: rgb(75, 203, 69); */
+  background-color: transparent;
 }
 
-.product-button:focus:before {
+.product-button > span:before {
+  content: "Copiar PIX";
+  color: #1a1a1a;
+  font-size: 16px;
+  transition: opacity 0.2s ease-in;
+}
+
+.product-button:focus > span:before {
+  content: "PIX copiado!";
+  color: rgb(75, 203, 69);
+  transition: opacity 0.2s ease-in;
+}
+.product-button > svg {
+  stroke: #21222c;
+}
+
+.product-button:focus > svg {
+  stroke: rgb(75, 203, 69);
+}
+
+.product-button:focus:after {
   background-color: transparent;
   border-radius: 10px;
   bottom: 0;
@@ -276,7 +319,7 @@ main {
   top: 0;
 }
 
-.product-button:before {
+.product-button:after {
   content: "";
   opacity: 0;
   position: absolute;
@@ -286,12 +329,31 @@ main {
 .product-button:active {
   transform: scale(0.98);
   outline: none;
+  background-color: transparent;
 }
 
 .loading {
   animation: jump 1.5s infinite;
   animation-timing-function: jump-start;
   width: 15vmax;
+}
+
+.faden {
+  opacity: 0.25;
+}
+
+.no-margin-bottom {
+  margin-bottom: 0;
+}
+
+.small {
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.medium {
+  font-size: 16px;
+  font-weight: 400;
 }
 
 stripe-pricing-table {
