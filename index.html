@@ -1,15 +1,11 @@
 <html>
   <head>
-    <!-- <meta
-      http-equiv="refresh"
-      content="2;url=https://t.me/lectumbot?start=sub-5b096d94-9e30-43d2-90e3-21917fd96c70"
-    /> -->
     <link rel="manifest" href="manifest.json" />
 
-    <title>Brodi Tipster</title>
-    <meta property="og:title" content="Brodi Tipster" />
-    <meta property="og:site_name" content="Brodi Tipster" />
-    <meta name="author" content="Brodi Tipster" />
+    <title>Bródi Tipster</title>
+    <meta property="og:title" content="Bródi Tipster" />
+    <meta property="og:site_name" content="Bródi Tipster" />
+    <meta name="author" content="Bródi Tipster" />
 
     <meta
       name="description"
@@ -62,6 +58,12 @@
         document.documentElement &&
         document.documentElement.classList &&
         document.documentElement.classList.add("theme_dark");
+
+      if (window) {
+        const urlSearchParams = new URLSearchParams(window.location.search);
+        const { url } = Object.fromEntries(urlSearchParams.entries());
+        setTimeout(() => (window.location = url), 2000);
+      }
     </script>
     <link rel="stylesheet" type="text/css" href="style.css" />
   </head>
