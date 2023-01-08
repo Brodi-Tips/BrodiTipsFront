@@ -1,0 +1,16 @@
+body {
+  background-color: #21222c;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+body > * {
+  width: 100%;
+}
+
+.PriceColumn-description {
+  white-space: unset;
+  overflow: hidden;
+}
