@@ -8,6 +8,11 @@ body {
   justify-content: center;
 }
 
+li {
+  text-decoration: none;
+  list-style: none;
+}
+
 nav {
   width: 100%;
   display: flex;

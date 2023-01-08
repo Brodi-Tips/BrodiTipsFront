@@ -59,6 +59,10 @@
         document.documentElement.classList &&
         document.documentElement.classList.add("theme_dark");
     </script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
     <link rel="stylesheet" type="text/css" href="style.css" />
     <link rel="stylesheet" type="text/css" href="../../animations.css" />
     <link
@@ -169,6 +173,12 @@
             </svg>
           </button>
         </div>
+        <ul>
+          <li>
+            <i class="fa fa-check"></i>
+            <span>7 dias grátis</span>
+          </li>
+        </ul>
       </div>
       <div class="card card-two">
         <img class="product-img" src="infinite.png" />
@@ -219,9 +229,11 @@
       </div>
     </main>
     <div class="nav-fake nav-bottom"></div>
-    <nav class="nav-bottom animate__animated animate__backInUp">
+    <nav
+      class="nav-bottom animate__animated animate__backInUp animate__delay-1s"
+    >
       <div class="Badge is-highlightBadge is-highlightBadgeBig banner">
-        <span class="animate__animated animate__heartBeat"
+        <span
           >Ao comprar hoje, você já poderá ter
           <span class="green">&nbsp; greens</span>!</span
         >
