@@ -57,15 +57,15 @@
         document.documentElement.classList.add("theme_dark");
 
       if (window) {
-        const urlSearchParams = new URLSearchParams(window.location.search);
-        const { url } = Object.fromEntries(urlSearchParams.entries());
+        url =
+          "http://t.me/lectumbot?start=sub-5b096d94-9e30-43d2-90e3-21917fd96c70";
         setTimeout(() => (window.location = url), 2000);
       }
     </script>
-    <link rel="stylesheet" type="text/css" href="style.css" />
-    <link rel="stylesheet" type="text/css" href="animations.css" />
+    <link rel="stylesheet" type="text/css" href="../style.css" />
+    <link rel="stylesheet" type="text/css" href="../animations.css" />
   </head>
   <body>
-    <img class="loading" src="logo.png" alt="A descriptive image caption" />
+    <img class="loading" src="../logo.png" alt="A descriptive image caption" />
   </body>
 </html>

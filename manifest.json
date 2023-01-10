@@ -1,6 +1,6 @@
 {
-  "short_name": "Bródi Tipster",
-  "name": "Bródi Tipster",
+  "short_name": "Bródi Tips",
+  "name": "Bródi Tips",
   "icons": [
     {
       "src": "logo.png",
@@ -9,7 +9,7 @@
     }
   ],
   "favicon": "/logo.png",
-  "start_url": "/TipsterRedirect/",
+  "start_url": "/TipsRedirect/",
   "background_color": "#21222C",
   "display": "standalone",
   "scope": "/",
