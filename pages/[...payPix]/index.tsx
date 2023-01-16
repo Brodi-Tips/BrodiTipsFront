@@ -8,10 +8,16 @@ import Head from "next/head";
 import CopySvg from "../../icons/CopySvg";
 import { QrCodePix } from "qrcode-pix";
 import { useCallback, useEffect, useState } from "react";
+import slicePix from "../../util/slicePix";
 
 export default function Home() {
   const router = useRouter();
+
   const payPix = router.query?.payPix;
+
+  const product = String(payPix?.at(0)).toUpperCase();
+  const identificator = String(payPix?.at(1)).toUpperCase();
+
   const [pix, setPix] = useState({
     pix30Days: { key: "", base64: "" },
     pix90Days: { key: "", base64: "" },
@@ -23,15 +29,23 @@ export default function Home() {
   const onCopyInfinite = () =>
     navigator.clipboard.writeText(pix.pixInfinite.key);
 
+  const validateRoute = useCallback(() => {
+    if (
+      payPix?.length === 2 &&
+      identificator.length > 0 &&
+      product.length > 0
+    ) {
+      const re = /[^a-z0-9]/gi;
+      if (re.test(identificator)) {
+        const idRemovedSpecial = identificator.replace(/[^a-z0-9]/gi, "");
+
+        router.push(`/${product}/${idRemovedSpecial}`);
+      }
+    }
+  }, [identificator, payPix?.length, product, router]);
+
   const generatePixes = useCallback(async () => {
     if (payPix?.length === 2) {
-      const product = String(payPix[0]).toUpperCase();
-      const identificator = String(payPix[1]).toUpperCase();
-
-      const product30Days = `${identificator}${product}30DIAS`;
-      const product90Days = `${identificator}${product}90DIAS`;
-      const productInfinite = `${identificator}${product}Infinite`;
-
       const defaultInfo = {
         version: "01",
         key: "42271690000163",
@@ -43,17 +57,17 @@ export default function Home() {
 
       const qrCodePix30Days = QrCodePix({
         ...defaultInfo,
-        transactionId: product30Days,
+        transactionId: slicePix(`${identificator}${product}30DIAS`),
         value: 99.99,
       });
       const qrCodePix90Days = QrCodePix({
         ...defaultInfo,
-        transactionId: product90Days,
+        transactionId: slicePix(`${identificator}${product}90DIAS`),
         value: 245.9,
       });
       const qrCodePixInfinte = QrCodePix({
         ...defaultInfo,
-        transactionId: productInfinite,
+        transactionId: slicePix(`${identificator}${product}Infinite`),
         value: 1999.99,
       });
 
@@ -72,11 +86,15 @@ export default function Home() {
         },
       });
     }
-  }, [payPix]);
+  }, [identificator, payPix?.length, product]);
 
   useEffect(() => {
     generatePixes();
   }, [generatePixes]);
+
+  useEffect(() => {
+    validateRoute();
+  }, [validateRoute]);
 
   return (
     <>
