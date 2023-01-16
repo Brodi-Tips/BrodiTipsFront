@@ -1,0 +1,37 @@
+@import url("https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css");
+
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css");
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+#__next {
+  background-color: #21222c;
+  color: #ffffff;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.42857143;
+}
+
+#__next:has(.index) {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  height: 100vh;
+}
+
+@media (min-width: 768px) {
+  body {
+    /* overflow: hidden; */
+  }
+
+  main:has(.checkout) {
+    overflow-y: scroll;
+    height: calc(100% - 150px);
+  }
+}
