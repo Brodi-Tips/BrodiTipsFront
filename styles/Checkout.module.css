@@ -91,3 +91,7 @@ body:has(.main) {
 .green {
   color: rgb(75, 203, 69);
 }
+
+.blue {
+  color: rgb(0, 255, 255);
+}
