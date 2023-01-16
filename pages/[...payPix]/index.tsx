@@ -25,12 +25,12 @@ export default function Home() {
 
   const generatePixes = useCallback(async () => {
     if (payPix?.length === 2) {
-      const product = payPix[0];
-      const identificator = payPix[1];
+      const product = String(payPix[0]).toUpperCase();
+      const identificator = String(payPix[1]).toUpperCase();
 
-      const product30Days = `${product}30DIAS`;
-      const product90Days = `${product}90DIAS`;
-      const productInfinite = `${product}Infinite`;
+      const product30Days = `${identificator}${product}30DIAS`;
+      const product90Days = `${identificator}${product}90DIAS`;
+      const productInfinite = `${identificator}${product}Infinite`;
 
       const defaultInfo = {
         version: "01",
@@ -43,17 +43,17 @@ export default function Home() {
 
       const qrCodePix30Days = QrCodePix({
         ...defaultInfo,
-        transactionId: `${identificator}-${product30Days}`,
+        transactionId: product30Days,
         value: 99.99,
       });
       const qrCodePix90Days = QrCodePix({
         ...defaultInfo,
-        transactionId: `${identificator}-${product90Days}`,
+        transactionId: product90Days,
         value: 245.9,
       });
       const qrCodePixInfinte = QrCodePix({
         ...defaultInfo,
-        transactionId: `${identificator}-${productInfinite}`,
+        transactionId: productInfinite,
         value: 1999.99,
       });
 
