@@ -1,6 +1,6 @@
 import stylesCard from "./CardCheckout.module.css";
 import stylesHighlight from "styles/Highlight.module.css";
-import Image from "next/image";
+
 import { ReactNode } from "react";
 import cn from "classnames";
 

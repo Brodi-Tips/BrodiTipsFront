@@ -1,22 +1,82 @@
+import { useRouter } from "next/router";
 import styles from "styles/Home.module.css";
 import stylesCheckout from "styles/Checkout.module.css";
 import stylesHighlight from "styles/Highlight.module.css";
-import Image from "next/image";
-import CardCheckout from "../../../components/CardCheckout";
+
+import CardCheckout from "../../components/CardCheckout";
 import Head from "next/head";
-import CopySvg from "../../../icons/CopySvg";
+import CopySvg from "../../icons/CopySvg";
+import { QrCodePix } from "qrcode-pix";
+import { useCallback, useEffect, useState } from "react";
 
 export default function Home() {
-  const pix30Days =
-    "00020101021126770014br.gov.bcb.pix0114422716900001630237Nao esqueca de adicionar seu telefone520400005303986540599.905802BR5915Viral Desenvolv6009FORTALEZA62130509FIFA30DAS630428EF";
-  const pix90Days =
-    "00020101021126770014br.gov.bcb.pix0114422716900001630237Nao esqueca de adicionar seu telefone5204000053039865406245.905802BR5915Viral Desenvolv6009FORTALEZA62140510FIFA90DIAS6304A13E";
-  const pixInfinite =
-    "00020101021126770014br.gov.bcb.pix0114422716900001630237Nao esqueca de adicionar seu telefone52040000530398654071999.995802BR5915Viral Desenvolv6009FORTALEZA62150511FIFAPREMIUM63041284";
+  const router = useRouter();
+  const payPix = router.query?.payPix;
+  const [pix, setPix] = useState({
+    pix30Days: { key: "", base64: "" },
+    pix90Days: { key: "", base64: "" },
+    pixInfinite: { key: "", base64: "" },
+  });
 
-  const onCopy30Days = () => navigator.clipboard.writeText(pix30Days);
-  const onCopy90Days = () => navigator.clipboard.writeText(pix90Days);
-  const onCopyInfinite = () => navigator.clipboard.writeText(pixInfinite);
+  const onCopy30Days = () => navigator.clipboard.writeText(pix.pix30Days.key);
+  const onCopy90Days = () => navigator.clipboard.writeText(pix.pix90Days.key);
+  const onCopyInfinite = () =>
+    navigator.clipboard.writeText(pix.pixInfinite.key);
+
+  const generatePixes = useCallback(async () => {
+    if (payPix?.length === 2) {
+      const product = payPix[0];
+      const identificator = payPix[1];
+
+      const product30Days = `${product}30DIAS`;
+      const product90Days = `${product}90DIAS`;
+      const productInfinite = `${product}Infinite`;
+
+      const defaultInfo = {
+        version: "01",
+        key: "42271690000163",
+        name: "VIRAL DESENVOLVIMENTO & TECNOLOGIA LTDA",
+        city: "FORTALEZA",
+        message: "Não esqueça de adicionar seu telegram para validarmos...",
+        cep: "60533662",
+      };
+
+      const qrCodePix30Days = QrCodePix({
+        ...defaultInfo,
+        transactionId: `${identificator}-${product30Days}`,
+        value: 99.99,
+      });
+      const qrCodePix90Days = QrCodePix({
+        ...defaultInfo,
+        transactionId: `${identificator}-${product90Days}`,
+        value: 245.9,
+      });
+      const qrCodePixInfinte = QrCodePix({
+        ...defaultInfo,
+        transactionId: `${identificator}-${productInfinite}`,
+        value: 1999.99,
+      });
+
+      setPix({
+        pix30Days: {
+          key: qrCodePix30Days.payload(),
+          base64: await qrCodePix30Days.base64(),
+        },
+        pix90Days: {
+          key: qrCodePix90Days.payload(),
+          base64: await qrCodePix90Days.base64(),
+        },
+        pixInfinite: {
+          key: qrCodePixInfinte.payload(),
+          base64: await qrCodePixInfinte.base64(),
+        },
+      });
+    }
+  }, [payPix]);
+
+  useEffect(() => {
+    generatePixes();
+  }, [generatePixes]);
 
   return (
     <>
@@ -38,7 +98,7 @@ export default function Home() {
         <main className={stylesCheckout["main"]}>
           <CardCheckout
             onClick={onCopy30Days}
-            imgSrc="/images/pix/30-days.png"
+            imgSrc={pix.pix30Days.base64}
             icon={<CopySvg />}
             title="Fifa - 30 dias"
             description="No Fifa nosso mercado de atuação é o Essocer GT League 12 minutos!"
@@ -58,7 +118,7 @@ export default function Home() {
           />
           <CardCheckout
             onClick={onCopy90Days}
-            imgSrc="/images/pix/90-days.png"
+            imgSrc={pix.pix90Days.base64}
             icon={<CopySvg />}
             title="Fifa - 90 dias"
             description="No Fifa nosso mercado de atuação é o Essocer GT League 12 minutos!"
@@ -81,7 +141,7 @@ export default function Home() {
           />
           <CardCheckout
             onClick={onCopyInfinite}
-            imgSrc="/images/pix/infinite.png"
+            imgSrc={pix.pixInfinite.base64}
             icon={<CopySvg />}
             title="Fifa - Infinite"
             titleHighlight="Premium"
@@ -93,7 +153,7 @@ export default function Home() {
             fromPrice="3799.99"
             toText="Por"
             discount="- 47%"
-            period="por 3 meses"
+            period="pela infinitude"
             priceSmall="menos que um cafézinho"
             periodSmall="por dia"
             positionCard={2}

@@ -1,7 +1,7 @@
 import styles from "styles/Home.module.css";
 import stylesCheckout from "styles/Checkout.module.css";
 import stylesHighlight from "styles/Highlight.module.css";
-import Image from "next/image";
+
 import CardCheckout from "../../../components/CardCheckout";
 import Head from "next/head";
 import ShopSvg from "../../../icons/ShopSvg";
@@ -87,7 +87,7 @@ export default function Home() {
             fromPrice="3799.99"
             toText="Por"
             discount="- 47%"
-            period="por 3 meses"
+            period="pela infinitude"
             priceSmall="menos que um cafézinho"
             periodSmall="por dia"
             positionCard={2}
