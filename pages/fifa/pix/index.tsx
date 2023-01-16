@@ -3,12 +3,12 @@ import styles from "styles/Home.module.css";
 import stylesCheckout from "styles/Checkout.module.css";
 import stylesHighlight from "styles/Highlight.module.css";
 
-import CardCheckout from "../../components/CardCheckout";
+import CardCheckout from "../../../components/CardCheckout";
 import Head from "next/head";
-import CopySvg from "../../icons/CopySvg";
+import CopySvg from "../../../icons/CopySvg";
 import { QrCodePix } from "qrcode-pix";
 import { useCallback, useEffect, useState } from "react";
-import slicePix from "../../util/slicePix";
+import slicePix from "../../../util/slicePix";
 
 export default function Home() {
   const router = useRouter();
