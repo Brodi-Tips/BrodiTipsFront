@@ -72,6 +72,7 @@ export default function Home() {
             periodSmall="por dia"
             textButton="Copiar PIX"
             textButtonClicked="PIX copiado!"
+            plus={["Cópia da entrada direto na BET"]}
             {...prices30Days}
           />
           <CardCheckout
@@ -89,6 +90,7 @@ export default function Home() {
             positionCard={1}
             textButton="Copiar PIX"
             textButtonClicked="PIX copiado!"
+            plus={["Cópia da entrada direto na BET"]}
             {...prices90Days}
           />
           <CardCheckout
@@ -106,6 +108,7 @@ export default function Home() {
             positionCard={2}
             textButton="Copiar PIX"
             textButtonClicked="PIX copiado!"
+            plus={["Cópia da entrada direto na BET"]}
             {...prices180Days}
           />
         </main>
