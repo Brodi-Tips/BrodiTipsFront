@@ -11,11 +11,20 @@ import slicePix from "../../../util/slicePix";
 import { getPrices } from "../../../util/getPrices";
 import { copy } from "../../../util/copy";
 
-export default function Home() {
+const Home = () => {
   const [pix, setPix] = useState({
-    pix30Days: { key: "", base64: "" },
-    pix90Days: { key: "", base64: "" },
-    pixInfinite: { key: "", base64: "" },
+    pix30Days: {
+      key: "",
+      base64: "",
+    },
+    pix90Days: {
+      key: "",
+      base64: "",
+    },
+    pixInfinite: {
+      key: "",
+      base64: "",
+    },
   });
 
   const product = "FIFA";
@@ -25,11 +34,11 @@ export default function Home() {
   const onCopy90Days = () => copy(pix.pix90Days.key);
   const onCopyInfinite = () => copy(pix.pixInfinite.key);
 
-  const basePrice = 244.99 * 3;
+  const basePrice = 244.99 * 6;
 
-  const finalPrice30Days = 299.99;
-  const finalPrice90Days = 750.99;
-  const finalPrice180Days = 1699.99;
+  const finalPrice30Days = 750.99;
+  const finalPrice90Days = 1750.99;
+  const finalPrice180Days = 4200.99;
 
   const prices30Days = getPrices(basePrice, finalPrice30Days, 30);
   const prices90Days = getPrices(basePrice * 3, finalPrice90Days, 90);
@@ -75,6 +84,23 @@ export default function Home() {
         base64: await qrCodePixInfinte.base64(),
       },
     });
+
+    console.log(
+      JSON.stringify({
+        pix30Days: {
+          key: qrCodePix30Days.payload(),
+          base64: await qrCodePix30Days.base64(),
+        },
+        pix90Days: {
+          key: qrCodePix90Days.payload(),
+          base64: await qrCodePix90Days.base64(),
+        },
+        pixPremium: {
+          key: qrCodePixInfinte.payload(),
+          base64: await qrCodePixInfinte.base64(),
+        },
+      })
+    );
   }, [identificator, product]);
 
   useEffect(() => {
@@ -179,4 +205,6 @@ export default function Home() {
       </div>
     </>
   );
-}
+};
+
+export default Home;

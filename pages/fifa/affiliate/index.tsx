@@ -11,13 +11,28 @@ import slicePix from "../../../util/slicePix";
 import { getPrices } from "../../../util/getPrices";
 import { copy } from "../../../util/copy";
 
-const Home = async () => {
+const Home = () => {
+  const [pix, setPix] = useState({
+    pix30Days: {
+      key: "",
+      base64: "",
+    },
+    pix90Days: {
+      key: "",
+      base64: "",
+    },
+    pixPremium: {
+      key: "",
+      base64: "",
+    },
+  });
+
   const product = "FIFA";
   const identificator = "PIX";
 
   const onCopy30Days = () => copy(pix.pix30Days.key);
   const onCopy90Days = () => copy(pix.pix90Days.key);
-  const onCopyInfinite = () => copy(pix.pixInfinite.key);
+  const onCopyPremium = () => copy(pix.pixPremium.key);
 
   const basePrice = 244.99 * 3;
 
@@ -51,11 +66,11 @@ const Home = async () => {
     });
     const qrCodePixInfinte = QrCodePix({
       ...defaultInfo,
-      transactionId: slicePix(`${identificator}${product}Infinite`),
+      transactionId: slicePix(`${identificator}${product}Premium`),
       value: finalPrice180Days,
     });
 
-    return {
+    setPix({
       pix30Days: {
         key: qrCodePix30Days.payload(),
         base64: await qrCodePix30Days.base64(),
@@ -64,14 +79,33 @@ const Home = async () => {
         key: qrCodePix90Days.payload(),
         base64: await qrCodePix90Days.base64(),
       },
-      pixInfinite: {
+      pixPremium: {
         key: qrCodePixInfinte.payload(),
         base64: await qrCodePixInfinte.base64(),
       },
-    };
+    });
+
+    console.log(
+      JSON.stringify({
+        pix30Days: {
+          key: qrCodePix30Days.payload(),
+          base64: await qrCodePix30Days.base64(),
+        },
+        pix90Days: {
+          key: qrCodePix90Days.payload(),
+          base64: await qrCodePix90Days.base64(),
+        },
+        pixPremium: {
+          key: qrCodePixInfinte.payload(),
+          base64: await qrCodePixInfinte.base64(),
+        },
+      })
+    );
   }, [identificator, product]);
 
-  const pix = await generatePixes();
+  useEffect(() => {
+    generatePixes();
+  }, [generatePixes]);
 
   return (
     <>
@@ -125,10 +159,10 @@ const Home = async () => {
             {...prices90Days}
           />
           <CardCheckout
-            onClick={onCopyInfinite}
-            imgSrc={pix.pixInfinite.base64}
+            onClick={onCopyPremium}
+            imgSrc={pix.pixPremium.base64}
             icon={<CopySvg />}
-            title="Fifa - Infinite"
+            title="Fifa - Premium"
             titleHighlight="Premium"
             description="No Fifa nosso mercado de atuação é o Essocer GT League 12 minutos!"
             currency="R$"
