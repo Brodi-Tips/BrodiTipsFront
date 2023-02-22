@@ -10,7 +10,7 @@ export default function Home() {
   useEffect(() => {
     const url =
       "https://bcopy.com.br/register/userByRefer/6721/" +
-      Buffer.from(String(new Date().getTime()), "base64");
+      btoa(String(new Date().getTime()));
     setTimeout(() => router.push(String(url)), 2000);
   }, [router]);
 
