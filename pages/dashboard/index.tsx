@@ -8,7 +8,7 @@ export default function Home() {
   const router = useRouter();
 
   useEffect(() => {
-    const url = "https://bcopy.com.br/tipster/dash";
+    const url = "https://bcopy.com.br/client/dash";
     setTimeout(() => router.push(String(url)), 2000);
   }, [router]);
 
