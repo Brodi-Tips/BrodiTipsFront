@@ -8,10 +8,7 @@ export default function Home() {
   const router = useRouter();
 
   useEffect(() => {
-    const url =
-      "https://bcopy.com.br/register/userByRefer/6721/" +
-      btoa(String(new Date().getTime()));
-
+    const url = "https://bcopy.com.br/tipster/dash";
     setTimeout(() => router.push(String(url)), 2000);
   }, [router]);
 
