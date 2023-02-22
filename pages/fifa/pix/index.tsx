@@ -6,7 +6,7 @@ import CardCheckout from "../../../components/CardCheckout";
 import Head from "next/head";
 import CopySvg from "../../../icons/CopySvg";
 import { copy } from "../../../util/copy";
-import { basicProduct } from "../../products/basicProduct";
+import { basicProduct } from "../../../products/basicProduct";
 
 export default function Home() {
   const pix = {

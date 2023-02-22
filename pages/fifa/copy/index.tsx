@@ -7,7 +7,7 @@ import Head from "next/head";
 import CopySvg from "../../../icons/CopySvg";
 import { copy } from "../../../util/copy";
 import { getPrices } from "../../../util/getPrices";
-import { fullCopyProduct } from "../../products/fullCopyProduct";
+import { fullCopyProduct } from "../../../products/fullCopyProduct";
 import CopyBet from "../../../components/CopyBet";
 
 export default function Home() {

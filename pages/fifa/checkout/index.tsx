@@ -7,7 +7,7 @@ import Head from "next/head";
 import ShopSvg from "../../../icons/ShopSvg";
 import classNames from "classnames";
 import CopyBet from "../../../components/CopyBet";
-import { fullCopyProduct } from "../../products/fullCopyProduct";
+import { fullCopyProduct } from "../../../products/fullCopyProduct";
 
 export default function Home() {
   const onClick30Days = () =>

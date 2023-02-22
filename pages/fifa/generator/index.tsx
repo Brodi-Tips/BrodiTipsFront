@@ -9,7 +9,7 @@ import { QrCodePix } from "qrcode-pix";
 import { useCallback, useEffect, useState } from "react";
 import slicePix from "../../../util/slicePix";
 import { copy } from "../../../util/copy";
-import { basicProduct } from "../../products/basicProduct";
+import { basicProduct } from "../../../products/basicProduct";
 
 const Home = () => {
   const [pix, setPix] = useState({

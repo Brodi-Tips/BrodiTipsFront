@@ -1,4 +1,4 @@
-import { getPrices } from "../../util/getPrices";
+import { getPrices } from "../util/getPrices";
 
 const basePrice = 244.99 * 6;
 
