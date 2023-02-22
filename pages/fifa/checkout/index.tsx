@@ -5,6 +5,7 @@ import stylesHighlight from "styles/Highlight.module.css";
 import CardCheckout from "../../../components/CardCheckout";
 import Head from "next/head";
 import ShopSvg from "../../../icons/ShopSvg";
+import classNames from "classnames";
 
 export default function Home() {
   const onClick30Days = () =>
@@ -31,7 +32,7 @@ export default function Home() {
           <h1>Bródi Tips - Fifa 💚</h1>
         </nav>
         <div className={stylesCheckout["nav-fake"]}></div>
-        <main className={stylesCheckout["main"]}>
+        <main className={classNames("main", stylesCheckout["main"])}>
           <CardCheckout
             onClick={onClick30Days}
             imgSrc="/images/checkout/30-days.png"

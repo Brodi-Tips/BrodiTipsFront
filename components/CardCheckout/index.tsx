@@ -55,7 +55,7 @@ const CardCheckout = ({
 }: CardCheckoutProps) => {
   return (
     <div
-      className={cn(stylesCard.card, {
+      className={cn("card", stylesCard.card, {
         [stylesCard["is-highlight"]]: isHighlight,
       })}
       style={{ animationDelay: `calc(${positionCard} * 0.2s)` }}
@@ -105,7 +105,9 @@ const CardCheckout = ({
           <p className={stylesCard["product-price"]}>
             <span className={stylesCard.small}>{currency} </span>
             {price}
-            <span className={stylesCard.medium}>{priceCents}</span>
+            {priceCents && (
+              <span className={stylesCard.medium}>,{priceCents}</span>
+            )}
             <span className={stylesCard.small}>&nbsp; / {period}</span>
           </p>
           <span className={stylesCard["product-discount"]}>{discount}</span>
@@ -114,9 +116,11 @@ const CardCheckout = ({
       <p className={stylesCard.faden + " " + stylesCard["product-description"]}>
         <span className={stylesCard.small}>{currency} </span>
         {priceSmall}
-        <span className={stylesCard.small}>
-          {priceSmallCents} / {periodSmall}
-        </span>
+        {priceSmallCents && periodSmall && (
+          <span className={stylesCard.small}>
+            ,{priceSmallCents} / {periodSmall}
+          </span>
+        )}
       </p>
       <div className={stylesCard["product-box-button"]}>
         <button
