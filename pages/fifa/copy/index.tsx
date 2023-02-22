@@ -7,6 +7,8 @@ import Head from "next/head";
 import CopySvg from "../../../icons/CopySvg";
 import { copy } from "../../../util/copy";
 import { getPrices } from "../../../util/getPrices";
+import { fullCopyProduct } from "../../products/fullCopyProduct";
+import CopyBet from "../../../components/CopyBet";
 
 export default function Home() {
   const pix = {
@@ -27,15 +29,7 @@ export default function Home() {
     },
   };
 
-  const basePrice = 244.99 * 6;
-
-  const finalPrice30Days = 750.99;
-  const finalPrice90Days = 1750.99;
-  const finalPrice180Days = 4200.99;
-
-  const prices30Days = getPrices(basePrice, finalPrice30Days, 30);
-  const prices90Days = getPrices(basePrice * 3, finalPrice90Days, 90);
-  const prices180Days = getPrices(basePrice * 6, finalPrice180Days, 180);
+  const { prices30Days, prices90Days, prices180Days } = fullCopyProduct;
 
   const onCopy30Days = () => copy(pix.pix30Days.key);
   const onCopy90Days = () => copy(pix.pix90Days.key);
@@ -72,7 +66,7 @@ export default function Home() {
             periodSmall="por dia"
             textButton="Copiar PIX"
             textButtonClicked="PIX copiado!"
-            plus={["Cópia da entrada direto na BET"]}
+            plus={[<CopyBet key={"copy"} />]}
             {...prices30Days}
           />
           <CardCheckout
@@ -90,14 +84,14 @@ export default function Home() {
             positionCard={1}
             textButton="Copiar PIX"
             textButtonClicked="PIX copiado!"
-            plus={["Cópia da entrada direto na BET"]}
+            plus={[<CopyBet key={"copy"} />]}
             {...prices90Days}
           />
           <CardCheckout
             onClick={onCopyPremium}
             imgSrc={pix.pixPremium.base64}
             icon={<CopySvg />}
-            title="Fifa - Premium"
+            title="Fifa"
             titleHighlight="Premium"
             description="No Fifa nosso mercado de atuação é o Essocer GT League 12 minutos!"
             currency="R$"
@@ -108,7 +102,7 @@ export default function Home() {
             positionCard={2}
             textButton="Copiar PIX"
             textButtonClicked="PIX copiado!"
-            plus={["Cópia da entrada direto na BET"]}
+            plus={[<CopyBet key={"copy"} />]}
             {...prices180Days}
           />
         </main>

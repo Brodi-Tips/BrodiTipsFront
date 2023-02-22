@@ -8,8 +8,8 @@ import CopySvg from "../../../icons/CopySvg";
 import { QrCodePix } from "qrcode-pix";
 import { useCallback, useEffect, useState } from "react";
 import slicePix from "../../../util/slicePix";
-import { getPrices } from "../../../util/getPrices";
 import { copy } from "../../../util/copy";
+import { basicProduct } from "../../products/basicProduct";
 
 const Home = () => {
   const [pix, setPix] = useState({
@@ -21,7 +21,7 @@ const Home = () => {
       key: "",
       base64: "",
     },
-    pixInfinite: {
+    pixPremium: {
       key: "",
       base64: "",
     },
@@ -32,17 +32,16 @@ const Home = () => {
 
   const onCopy30Days = () => copy(pix.pix30Days.key);
   const onCopy90Days = () => copy(pix.pix90Days.key);
-  const onCopyInfinite = () => copy(pix.pixInfinite.key);
+  const onCopyPremium = () => copy(pix.pixPremium.key);
 
-  const basePrice = 244.99 * 6;
-
-  const finalPrice30Days = 750.99;
-  const finalPrice90Days = 1750.99;
-  const finalPrice180Days = 4200.99;
-
-  const prices30Days = getPrices(basePrice, finalPrice30Days, 30);
-  const prices90Days = getPrices(basePrice * 3, finalPrice90Days, 90);
-  const prices180Days = getPrices(basePrice * 6, finalPrice180Days, 180);
+  const {
+    finalPrice180Days,
+    finalPrice30Days,
+    finalPrice90Days,
+    prices30Days,
+    prices90Days,
+    prices180Days,
+  } = basicProduct;
 
   const generatePixes = useCallback(async () => {
     const defaultInfo = {
@@ -66,7 +65,7 @@ const Home = () => {
     });
     const qrCodePixInfinte = QrCodePix({
       ...defaultInfo,
-      transactionId: slicePix(`${identificator}${product}Infinite`),
+      transactionId: slicePix(`${identificator}${product}Premium`),
       value: finalPrice180Days,
     });
 
@@ -79,7 +78,7 @@ const Home = () => {
         key: qrCodePix90Days.payload(),
         base64: await qrCodePix90Days.base64(),
       },
-      pixInfinite: {
+      pixPremium: {
         key: qrCodePixInfinte.payload(),
         base64: await qrCodePixInfinte.base64(),
       },
@@ -101,7 +100,7 @@ const Home = () => {
         },
       })
     );
-  }, [identificator, product]);
+  }, [finalPrice180Days, finalPrice30Days, finalPrice90Days]);
 
   useEffect(() => {
     generatePixes();
@@ -159,10 +158,10 @@ const Home = () => {
             {...prices90Days}
           />
           <CardCheckout
-            onClick={onCopyInfinite}
-            imgSrc={pix.pixInfinite.base64}
+            onClick={onCopyPremium}
+            imgSrc={pix.pixPremium.base64}
             icon={<CopySvg />}
-            title="Fifa - Infinite"
+            title="Fifa"
             titleHighlight="Premium"
             description="No Fifa nosso mercado de atuação é o Essocer GT League 12 minutos!"
             currency="R$"

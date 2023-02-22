@@ -6,7 +6,7 @@ import CardCheckout from "../../../components/CardCheckout";
 import Head from "next/head";
 import CopySvg from "../../../icons/CopySvg";
 import { copy } from "../../../util/copy";
-import { getPrices } from "../../../util/getPrices";
+import { basicProduct } from "../../products/basicProduct";
 
 export default function Home() {
   const pix = {
@@ -27,19 +27,11 @@ export default function Home() {
     },
   };
 
-  const basePrice = 244.99 * 3;
-
-  const finalPrice30Days = 299.99;
-  const finalPrice90Days = 750.99;
-  const finalPrice180Days = 1699.99;
-
-  const prices30Days = getPrices(basePrice, finalPrice30Days, 30);
-  const prices90Days = getPrices(basePrice * 3, finalPrice90Days, 90);
-  const prices180Days = getPrices(basePrice * 6, finalPrice180Days, 180);
-
   const onCopy30Days = () => copy(pix.pix30Days.key);
   const onCopy90Days = () => copy(pix.pix90Days.key);
   const onCopyPremium = () => copy(pix.pixPremium.key);
+
+  const { prices30Days, prices90Days, prices180Days } = basicProduct;
 
   return (
     <>
@@ -96,7 +88,7 @@ export default function Home() {
             onClick={onCopyPremium}
             imgSrc={pix.pixPremium.base64}
             icon={<CopySvg />}
-            title="Fifa - Premium"
+            title="Fifa"
             titleHighlight="Premium"
             description="No Fifa nosso mercado de atuação é o Essocer GT League 12 minutos!"
             currency="R$"

@@ -7,17 +7,17 @@ import Head from "next/head";
 import ShopSvg from "../../../icons/ShopSvg";
 import classNames from "classnames";
 import CopyBet from "../../../components/CopyBet";
-import { fullCopyProduct } from "../../products/fullCopyProduct";
+import { basicProduct } from "../../products/basicProduct";
 
 export default function Home() {
   const onClick30Days = () =>
-    window.open("https://buy.stripe.com/00g4kfaHk1i0bOo14i", "_blank");
+    window.open("https://buy.stripe.com/7sIaID9Dg9Ow5q0008", "_blank");
   const onClick90Days = () =>
-    window.open("https://buy.stripe.com/4gw2c7eXA8KscSscMY", "_blank");
+    window.open("https://buy.stripe.com/9AQ3gb8zc6Ck7y86ox", "_blank");
   const onClickPremium = () =>
-    window.open("https://buy.stripe.com/6oE6sncPsbWE4lWeV7", "_blank");
+    window.open("https://buy.stripe.com/3csg2X3eS3q8cSs7sC", "_blank");
 
-  const { prices30Days, prices90Days, prices180Days } = fullCopyProduct;
+  const { prices30Days, prices90Days, prices180Days } = basicProduct;
 
   return (
     <>
@@ -49,7 +49,6 @@ export default function Home() {
             period="por mês"
             periodSmall="por dia"
             textButton="Comprar"
-            plus={[<CopyBet key={"copy"} />]}
             {...prices30Days}
           />
           <CardCheckout
@@ -66,7 +65,7 @@ export default function Home() {
             isHighlight
             positionCard={1}
             textButton="Comprar AGORA!"
-            plus={[<CopyBet key={"copy"} />]}
+            plus={["7 dias grátis"]}
             {...prices90Days}
           />
           <CardCheckout
@@ -83,7 +82,6 @@ export default function Home() {
             periodSmall="por dia"
             positionCard={2}
             textButton="Comprar"
-            plus={[<CopyBet key={"copy"} />]}
             {...prices180Days}
           />
         </main>

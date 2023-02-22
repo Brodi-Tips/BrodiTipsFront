@@ -24,7 +24,7 @@ interface CardCheckoutProps {
   icon: ReactNode;
   isHighlight?: boolean;
   positionCard?: number;
-  plus?: string[];
+  plus?: ReactNode[] | string[];
   textButton?: string;
   textButtonClicked?: string;
 }
@@ -148,9 +148,15 @@ const CardCheckout = ({
           </div>
           <ul className={stylesCard["box-list"]}>
             {plus.map((item, index) => (
-              <li key={index} className={stylesCard["list"]}>
+              <li
+                key={index}
+                className={stylesCard["list"]}
+                style={{ display: "flex", alignItems: "center" }}
+              >
                 <i className={"fa fa-check"}></i>
-                <span>&nbsp; {item}</span>
+                <span style={{ display: "flex", alignItems: "center" }}>
+                  &nbsp; {item}
+                </span>
               </li>
             ))}
           </ul>
