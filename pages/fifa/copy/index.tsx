@@ -87,7 +87,6 @@ export default function Home() {
             periodSmall="por dia"
             isHighlight
             positionCard={1}
-            plus={["7 dias grátis"]}
             textButton="Copiar PIX"
             textButtonClicked="PIX copiado!"
             {...prices90Days}
